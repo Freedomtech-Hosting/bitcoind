@@ -18,7 +18,7 @@ COPY rpcauth.py rpcauth.py
 RUN apk add --no-cache python3
 
 ENV BITCOIND_USER=freedomtech \
-    BITCOIND_PASSWORDR=freedomtech
+    BITCOIND_PASSWORD=freedomtech
 
 # bitcoind has an entrypoint which we don't need, overwrite it
 ENTRYPOINT [ "" ]
