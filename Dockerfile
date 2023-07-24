@@ -1,6 +1,6 @@
-ARG BTCDBASE_IMAGE=lncm/bitcoind:v25.0@sha256:fad11d4874f1c2dc4373f6fea913bf95e0f0491f377b9a0930f488565e6266f0
+ARG BITCOIND_IMAGE=lncm/bitcoind:v25.0@sha256:fad11d4874f1c2dc4373f6fea913bf95e0f0491f377b9a0930f488565e6266f0
 FROM uselagoon/commons as commons
-FROM ${BTCDBASE_IMAGE} as btcd-base
+FROM ${BITCOIND_IMAGE} as bitcoind-base
 
 COPY --from=commons /bin/fix-permissions /bin/ep /bin/
 
@@ -12,6 +12,13 @@ COPY start-bitcoind.sh /usr/bin/start-bitcoind.sh
 # the actual container will then be started with an random user id but known group=root
 USER root
 RUN fix-permissions /etc/bitcoin.conf
+
+# needed for rpcauth.py to work
+COPY rpcauth.py rpcauth.py
+RUN apk add --no-cache python3
+
+ENV BITCOIND_USER=freedomtech \
+    BITCOIND_PASSWORDR=freedomtech
 
 # bitcoind has an entrypoint which we don't need, overwrite it
 ENTRYPOINT [ "" ]

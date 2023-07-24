@@ -18,7 +18,7 @@ services:
       lagoon.service.port: 8332
     environment:
       LAGOON_LOCALDEV_HTTP_PORT: 8332
-      LAGOON_ROUTE: http://btcd-grpc.docker.amazee.io
+      LAGOON_ROUTE: http://bitcoind-grpc.docker.amazee.io
 
 
 networks:
