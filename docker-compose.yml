@@ -19,7 +19,7 @@ services:
     environment:
       LAGOON_LOCALDEV_HTTP_PORT: 8332
       LAGOON_ROUTE: http://bitcoind-grpc.docker.amazee.io
-
+    platform: linux/amd64
 
 networks:
   amazeeio-network:
