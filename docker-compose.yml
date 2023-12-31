@@ -13,9 +13,8 @@ services:
     ports:
       - 8332:8332
     labels:
-      lagoon.type: basic-persistent
+      lagoon.type: bitcoind
       lagoon.persistent: /data/.bitcoin
-      lagoon.service.port: 8332
     environment:
       LAGOON_LOCALDEV_HTTP_PORT: 8332
       LAGOON_ROUTE: http://bitcoind-grpc.docker.amazee.io
