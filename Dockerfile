@@ -13,6 +13,9 @@ COPY start-bitcoind.sh /usr/bin/start-bitcoind.sh
 USER root
 RUN fix-permissions /etc/bitcoin.conf
 
+# bitcoin-cli looks for the .bitcoin directory in /.bitcoin, but it is actually in /data/.bitcoin so we create symbolic links to the right places
+RUN mkdir -p /data && ln -s /data/.bitcoin /.bitcoin
+
 # needed for rpcauth.py to work
 COPY rpcauth.py rpcauth.py
 RUN apk add --no-cache python3
